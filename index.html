@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <title>ITS Kennedy - Thiene - 2019/2020</title>
+    
+    <!-- Script lettura JSON -->
+    <script>
+        $(document).ready(init);
+        
+        function init() {
+            $.getJSON("contacts.json").done(onSuccess).fail(onError);
+        }
+        
+        function onError(error) {
+            alert("Si è verificato un errore " + error.status);
+        }
+        function onSuccess(datiJSON) {
+            var cards = "";
+            for (i = 0; i < datiJSON.contact.length; i++) {
+                cards += "<div class='col-sm-3'>"
+                cards += "  <div class='card'>"
+                cards += "    <div class='card-body'>"
+                cards += "      <h5 class='card-title'>" + datiJSON.contact[i].Cognome + " " + datiJSON.contact[i].Nome +"</h5>"
+                cards += "      <p class='card-text'>Click on button to open the project.</p>"
+                cards += "      <a href='projects/" + datiJSON.contact[i].id + "/index.html" +"' class='btn btn-primary'>Go to the Project</a>"
+                cards += "    </div>"
+                cards += "  </div>"
+                cards += "</div>"
+            }
+            $("#card_contacts").html(cards);
+        }
+        
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">I.T.S. Kennedy Thiene - 2019/2020</h1>
+            <p class="lead">Progetto di esercitazione all'uso di repository su GitHub</p>
+        </div>
+        <div class="row" id="card_contacts">
+        </div>
+    </div>
+</body>
+
+</html>
