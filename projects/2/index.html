@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Gestione Commesse</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(init);
+
+        function init() {
+           
+            $.getJSON("http://win.bonato.it/ws/wspw.asmx/GetCommesse").done(onSuccess).fail(onError);
+            $("#btnSalva").click(SalvaJSON);
+            $("#btnUpload").click(Upload);
+
+        }
+
+        function onError(error) {
+            alert("Si è verificato un errore " + error.status);
+        }
+
+        function onSuccess(jsonData){
+            var lista = "";
+            $(jsonData).each(function () {
+
+                lista += "<tr><td>" + $(this).attr("idCommessa") + "</td>" + "<td>" + $(this).attr("nrPezziOK") + "</td>" + "<td>" + $(this).attr("nrPezziKO") + "</td>" + "<td>" + $(this).attr("lastUpdate") + "</td>" + "</tr>";
+
+            });
+            $("#myTable").html(lista);
+        }
+
+        var stringa = "[";
+        var cont = 0;
+
+        function SalvaJSON(){
+
+            var ID = $("#txtCommessa").val();
+            var PFatti = $("#txtPezziFatti").val();
+            var PScarti = $("#txtPezziScartati").val();
+
+            if(ID!="" && PFatti!="" && PScarti!=""){
+                if(cont!=0){
+                    stringa += ',{"idCommessa":"' + ID + '","nrPezziOK":' + PFatti + ',"nrPezziKO":' + PScarti + '}';
+                }
+                else{
+                    stringa += '{"idCommessa":"' + ID + '","nrPezziOK":' + PFatti + ',"nrPezziKO":' + PScarti + '}';
+                    cont++;
+                }
+                
+                alert(stringa);
+            }
+            else{
+                alert("Compila i campi!");
+            }
+            
+        }
+
+        function Upload(){
+
+            stringa += "]";
+            window.open("http://win.bonato.it/ws/wspw.asmx/SetCommessa?jsonIn="+stringa);
+            
+        }
+        
+
+    </script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row m-3">
+            <div class="col-3">
+                <input type="text" class="form-control mt-2" placeholder="ID commessa" id="txtCommessa">
+            </div>
+        </div>
+        <div class="row m-3">
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Nr Pezzi Realizzati" id="txtPezziFatti">
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-dark mr-5 ml-4" id="btnSalva">Salva JSON</button>
+                <button type="button" class="btn btn-dark" id="btnUpload">Upload</button>
+            </div>
+        </div>
+        <div class="row m-3">   
+            <div class="col-3">
+                <input type="text" class="form-control" placeholder="Nr Pezzi Scarti" id="txtPezziScartati">
+            </div>
+        </div>
+        
+            
+
+            
+        
+        <br>
+        <!-- Corpo -->
+        <div class="container-fluid">
+
+            <div class="row">
+                <!--Tabella effettiva-->
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th scope="col">ID Commessa</th>
+                                <th scope="col">Nr Pezzi Realizzati</th>
+                                <th scope="col">Nr Pezzi Scartati</th>
+                                <th scope="col">Data Ultimo Aggiornamento</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
