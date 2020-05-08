@@ -21,6 +21,10 @@
         
         function init() {
             $.getJSON("contacts.json").done(onSuccess).fail(onError);
+            $("#btnRedirect").click(Ridirezione);
+        }
+        function Ridirezione(){
+            window.location.href="commesse.html";
         }
         
         function onError(error) {
