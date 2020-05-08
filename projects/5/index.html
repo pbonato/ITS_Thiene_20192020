@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Esercitazione API</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js"></script>
+
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid text-center">
+        <div>
+            <h1 class="display-1 mt-3">Gestione Commesse</h1>
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+
+            <div class="col-md-6 my-5">
+                <h3>Inserimento Commessa:</h3>
+                <h6>ID Commessa:</h6>
+                <input id="txtID" class="form-control" type="text" placeholder="ID Commessa">
+                <h6>N° Pezzi realizzati:</h6>
+                <input id="txtNPOK" class="form-control" type="text" placeholder="N° Pezzi realizzati">
+                <h6>N° Pezzi Scarti:</h6>
+                <input id="txtNPW" class="form-control" type="text" placeholder="N° Pezzi Scarti">
+
+                <div class="btn-group mt-3" role="group" aria-label="Third group">
+                    <button id="myBtn" type="button" class="btn btn-primary">Inserisci</button>
+                </div>
+            </div>
+
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+
+            <div class="justify-content-center mt-3 mb-4 col-md-6">
+                <h3>Ricerca della Commessa:</h3>
+                <input id="myInput" type="text" class="form-control" placeholder="Ricerca">
+                <div class="input-group-append"></div>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">N° Pezzi realizzati</th>
+                        <th scope="col">N° Pezzi Scartati</th>
+                        <th scope="col">Data ultimo aggiornamento</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Esito dell'invio commessa</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="myData"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="myReload" type="button" class="btn btn-primary" data-dismiss="modal">Ricarica Tabella</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

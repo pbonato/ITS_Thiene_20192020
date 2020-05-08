@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+      <div class="container-fluid">
+        <form>
+          <div class="row my-4">
+            <div class=col-4></div>
+            <div class="col">
+                <div class="h1 text-center">Gestione commesse</div>
+            </div> 
+            <div class=col-4></div>
+          </div>
+          <div class="row my-2">
+            <div class=col-4></div>
+            <div class="col">
+              <input type="text" class="form-control" id="idcommessa" placeholder="ID Commessa">
+            </div>
+            <div class=col-4></div>
+          </div>
+          <div class="row my-2">
+            <div class=col-4></div>
+            <div class="col">
+              <input type="text" class="form-control" id="pzreal" placeholder="Nr Pezzi realizzati">
+            </div>
+            <div class=col-4></div>
+          </div>
+          <div class="row my-2">
+            <div class=col-4></div>
+            <div class="col">
+              <input type="text" class="form-control" id="pzscar" placeholder="Nr Pezzi scarti">
+            </div>
+            <div class=col-4></div>
+          </div>
+          <div class="row my-3">
+            <div class=col-5></div>
+            <div class="col text-center">
+                <button type="button" class="btn btn-primary" id="aggiungi">Aggiungi commessa</button>
+            </div>
+            <div class=col-5></div>
+          </div>
+          <div class="row my-3">
+            <div class=col-5></div>
+            <div class="col text-center">
+                <button type="button" class="btn btn-primary" id="refresh">Ricarica tabella</button>
+            </div>
+            <div class=col-5></div>
+          </div>
+        </form>
+        
+        <table class="table table-striped">
+            <thead class="bg-dark text-light">
+                <th>ID Commessa</th>
+                <th>Nr pezzi realizzati</th>
+                <th>Nr pezzi scarto</th>
+                <th>Ultima modifica</th>
+            </thead>
+            <tbody id="mytbody">
+            </tbody>
+        </table>
+        <div id="loading">
+            <center><img src="https://gifimage.net/wp-content/uploads/2017/11/gif-caricamento-11.gif"></center>
+        </div>
+      </div>
+ 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    </body>
+</html>

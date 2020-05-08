@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/./css/bootstrap.min.css">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/./js/jquery-3.5.0.min.js"></script>
+    <script src="/./js/popper.min.js"></script>
+    <script src="/./js/bootstrap.min.js"></script>
+    <title>ITS Kennedy - Thiene - 2019/2020</title>
+    
+    <!-- Script lettura JSON -->
+    <script>
+        $(document).ready(init);
+        
+        function init() {
+            $.getJSON("http://win.bonato.it/ws/wspw.asmx/GetCommesse").done(onSuccess).fail(onError);
+        }
+        
+        function onError(error) {
+            alert("Si è verificato un errore " + error.status);
+        }
+        function onSuccess(datiJSON) {
+            //alert("YAY!!!");
+            
+        }
+        
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-8">Agostini Guglielmo</h1>
+            <p class="lead">Progetto di esercitazione all'uso di repository su GitHub</p>
+            <p class="lead">!!!DISCLAIMER!!! - Questo progetto è MOOOOOLTO incompleto, prof non si arrabi se non riesco a finiirlo</p>
+        </div>
+        <div class="container">
+            <table class="table">
+                <thead>TEST</thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
