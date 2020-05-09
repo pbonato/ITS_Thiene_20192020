@@ -24,6 +24,7 @@
 
         function init() {
             $.getJSON("http://win.bonato.it/ws/wspw.asmx/GetCommesse").done(onSuccess).fail(onError);
+            $("#btnSubmit").click(Send);
         }
 
         function onError(error) {
@@ -46,10 +47,49 @@
             $("#body").html(foo);
         }
 
+        function Send() {
+            let foo = "http://win.bonato.it/ws/wspw.asmx/SetCommessa?jsonIn=[";
+            let obj = new Object();
+
+            obj.idCommessa = $("#txtIdCommessa").val();
+            obj.nrPezziOK = $("#txtNrPezziOK").val();
+            obj.nrPezziKO = $("#txtNrPezziKO").val();
+
+            foo += JSON.stringify(obj) + "]";
+            $.get(foo, function(data) {
+                $("#myModal").modal({
+                    backdrop: "static"
+                });
+                $("#myData").html("<p>" + data + "</p>");
+            });
+            
+            init();
+        }
     </script>
 </head>
 
 <body>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">idCommessa</span>
+        </div>
+        <input type="text" class="form-control" placeholder="idCommessa" aria-label="Username" aria-describedby="basic-addon1" id="txtIdCommessa">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">nrPezziOK</span>
+        </div>
+        <input type="text" class="form-control" placeholder="nrPezziOK" aria-label="Username" aria-describedby="basic-addon1" id="txtNrPezziOK">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">nrPezziKO</span>
+        </div>
+        <input type="text" class="form-control" placeholder="nrPezziKO" aria-label="Username" aria-describedby="basic-addon1" id="txtNrPezziKO">
+    </div>
+    <div>
+        <button type="button" class="btn btn-dark" id="btnSubmit">Submit</button>
+    </div>
     <div id="Foo">
         <table class="table table-striped">
             <thead>
@@ -64,6 +104,4 @@
             </tbody>
         </table>
     </div>
-</body>
-
-</html>
+</body></html>
